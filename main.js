@@ -994,7 +994,7 @@ function zoomDom(dom, s, origin) {
     "-o-transform-origin": origin,
     "-transform-origin": origin
   });
-}
+}o
 
 function getUrlRequest() {
   var url = location.search; //获取url中"?"符后的字串
