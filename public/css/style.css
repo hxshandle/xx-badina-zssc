@@ -12,3 +12,12 @@ body {
 
 .no {
   display: none; }
+
+#list {
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+  #list a {
+    position: absolute; }
+    #list a img {
+      width: 100%; }

@@ -1,1 +1,14 @@
 @import "_common";
+
+#list{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  a{
+    position: absolute;
+    img{
+      width: 100%;
+    }
+  }
+}
