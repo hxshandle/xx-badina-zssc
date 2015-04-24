@@ -17,6 +17,8 @@ body {
   position: absolute;
   width: 100%;
   height: 100%; }
+  #list .thumbList {
+    position: absolute; }
   #list a {
     position: absolute; }
     #list a img {
