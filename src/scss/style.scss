@@ -9,8 +9,51 @@
   }
   a{
     position: absolute;
+    text-align: right;
     img{
       width: 100%;
     }
+    .pageNum{
+      color: #fff;
+      font-size: 10px;
+      font-weight: bold;
+      span{
+        font-size: 14px;
+        padding-left: 10px;
+      }
+    }
+
+    &.chapter{
+      span{
+        font-size: 28px;
+        padding-left: 10px;
+      }
+    }
   }
+}
+
+
+#chapters{
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  a{
+    display: inline-block;
+    margin:0 10px;
+    img{
+      width:100%;
+    }
+  }
+  
+}
+
+#chapterSlider{
+  width: 5px;
+  background: red;
+  position: absolute;
+  height: 100px;
+  bottom: 3px;
+  left: -100px;
+  z-index: -1;
 }

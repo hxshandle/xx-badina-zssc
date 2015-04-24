@@ -1,31 +1,34 @@
-$(function() {
+//$(function() {
   var imageList = [],
     preloadImageList = [],
     totalPages = 0,
     pageIndex = 0,
-    thumbWidth = 190,
+    thumbWidth = 290,
     totalThumberWidth = 0,
-    chapterWidth = 200,
+    chapterWidth = 300,
+    minChapterWidth=55,
     normalPage = 0,
     gutter = 15,
     normalPageGutter = 10,
     curLeft = 0,
     curTop = 100,
-    normalPageHeight = 175,
+    normalPageHeight = 250,
     listCurrLeft = 0,
     winWidth = _W = $(window).width(),
     winHeight = _H = $(window).height(),
     isread = false,
-    chatperWidth = 50;
-  var isPC = is_pc(),
+    chatperWidth = 50,
+    isPC = is_pc(),
     isPad = is_ipad(),
-    isMob = is_mobile();
+    isMob = is_mobile(),
+    book;
   var mousedown = "touchstart";
   var mouseup = "touchend";
   var mousemove = "touchmove";
 
   function init() {
     // init books
+    book = new Book();
     _.each(BOOK_DETAILS, function(obj, idx, arr) {
       imageList.push(obj.chapter);
       imageList = imageList.concat(obj.thumbs);
@@ -48,6 +51,7 @@ $(function() {
       mouseup = "mouseup";
       mousemove = "mousemove";
     }
+
     document.addEventListener(mousedown, ondown);
     document.addEventListener(mousemove, onmove);
     document.addEventListener(mouseup, onup);
@@ -58,6 +62,7 @@ $(function() {
   function ondown(e) {
     //e.preventDefault();
     isdown = true;
+    listCurrLeft = $('#list .thumbList').position().left;
     smx = nmx = isPC ? e.pageX : e.touches[0].pageX;
     stime = new Date().getTime();
   }
@@ -86,22 +91,21 @@ $(function() {
     }, 100);
     if (isread || nmx == smx) return;
     var left = Math.max(-(totalThumberWidth), Math.min(0, (tlen / (new Date().getTime() - stime) * 1000) * ssmin + tlistleft));
-    $(".list .imgs,#list .thumbList").animate({
+    $("#list .thumbList").animate({
       left: left
     }, 500, "swing", function() {
       listCurrLeft = left;
-      //TODO: move slider
-      /*for (var i = listLeft.length - 1; i >= 0; i--) {
-        if (listCurrLeft <= listLeft[i] * ssmin) {
-          cm.moveslider(i);
+      var listChapters = book.chapters;
+      for (var i = listChapters.length - 1; i >= 0; i--) {
+        if (listCurrLeft <= -(listChapters[i].left- chapterWidth -gutter) ) {
+          book.moveChapterSlider(i,true);
           break;
         }
-      }*/
+      }
     });
   }
 
   function _progress(data) {
-    //console.log(data.img.src);
     addChapter(data);
     addThumb(data);
     addPage(data);
@@ -116,20 +120,32 @@ $(function() {
     pageIndex++;
     var _top = curTop;
     if (!opt.isNewChapter) {
-      _top = normalPage * normalPageHeight + curTop;
+      _top = normalPage * normalPageHeight + curTop+16;
       normalPage = normalPage == 0 ? 1 : 0;
     } else {
       normalPage = 0;
     }
     curLeft = opt.isNewChapter ? curLeft + gutter : curLeft;
+    var pageNo = opt.isNewChapter ? (pageIndex*2 -1) : ((pageIndex-1)*2) +"/"+((pageIndex-1)*2 +1);
     var locals = {
       src: opt.src,
-      num: pageIndex,
+      num: pageNo,
       left: curLeft + "px",
       top: _top + "px",
       width: (opt.isNewChapter ? chapterWidth : thumbWidth) + "px",
-      ref: "page_" + pageIndex
+      ref: "page_" + pageIndex,
+      pageNo:pageIndex,
+      clazz: opt.isNewChapter ? "chapter" : ""
     }
+
+    // add chapter
+    if(opt.isNewChapter){
+      book.addChapter({
+        left:curLeft,
+        pageNo:pageIndex
+      });
+    }
+    
     if (normalPage == 0 && !opt.isNewChapter) {
       $(thumbTpl2(locals)).appendTo("#list .thumbList");
     } else {
@@ -137,13 +153,18 @@ $(function() {
     }
     if (normalPage == 0 || opt.isNewChapter) {
       var _w = opt.isNewChapter ? chapterWidth : thumbWidth;
-      //var _g = opt.isNewChapter ? gutter: normalPageGutter;
       curLeft += _w + normalPageGutter;
       
     }
     if(opt.isNewChapter){
       totalThumberWidth = curLeft - chapterWidth - gutter*2;
     }
+  }
+
+  function _addChapter(data){
+    data.width = minChapterWidth+"px";
+    $(chapterTpl(data)).appendTo($('#chapters'));
+
   }
 
   function addChapter(data) {
@@ -153,6 +174,9 @@ $(function() {
       _addThumb({
         src: data.img.src,
         isNewChapter: true
+      });
+      _addChapter({
+        src: data.img.src
       });
     }
   }
@@ -171,11 +195,21 @@ $(function() {
   function addPage(data) {
     var imgName = _getImageName(data.img.src);
     if (/^\d/.test(imgName)) {
-      console.log('add page %s', imgName);
+      
     }
   }
 
-  function _end(data) {}
+  function bindEvent(){
+    // bind chapter nav event
+    $('#chapters a').click(function(){
+      book.moveChapter($(this).index());
+    });
+  }
+
+  function _end(data) {
+    bindEvent();
+    book.moveChapterSlider(0);
+  }
   init();
   console.log('done');
-});
+//});
