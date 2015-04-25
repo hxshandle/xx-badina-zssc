@@ -195,7 +195,7 @@
   function addPage(data) {
     var imgName = _getImageName(data.img.src);
     if (/^\d/.test(imgName)) {
-      
+      $(paperTpl({src:data.img.src})).appendTo($('.book'));
     }
   }
 

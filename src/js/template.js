@@ -60,3 +60,26 @@ function chapterTpl(locals) {
     }).call(this, "src" in locals_for_with ? locals_for_with.src : typeof src !== "undefined" ? src : undefined, "width" in locals_for_with ? locals_for_with.width : typeof width !== "undefined" ? width : undefined);
     return buf.join("");
 }
+
+
+/**
+ * 
+.paper
+  img.image(src="#{src}")
+
+{
+  src:"aaa"
+}
+
+* 
+ */
+function paperTpl(locals) {
+    var buf = [];
+    var jade_mixins = {};
+    var jade_interp;
+    var locals_for_with = locals || {};
+    (function(src) {
+        buf.push('<div class="paper"><img' + jade.attr("src", "" + src + "", true, false) + ' class="image"/></div>');
+    }).call(this, "src" in locals_for_with ? locals_for_with.src : typeof src !== "undefined" ? src : undefined);
+    return buf.join("");
+}
