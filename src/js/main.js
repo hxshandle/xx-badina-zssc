@@ -25,9 +25,41 @@
   var mousedown = "touchstart";
   var mouseup = "touchend";
   var mousemove = "touchmove";
+  var PAPER_BOX=[2048,1536]; // define the page size
+
+
+  function zoomDom(dom, s, origin) {
+    if (!origin) origin = "top center";
+    dom.css({
+      "-webkit-transform": "scale(" + s + ")",
+      "-moz-transform": "scale(" + s + ")",
+      "-ms-transform": "scale(" + s + ")",
+      "-o-transform": "scale(" + s + ")",
+      "transform": "scale(" + s + ")",
+      "-webkit-transform-origin": origin,
+      "-moz-transform-origin": origin,
+      "-ms-transform-origin": origin,
+      "-o-transform-origin": origin,
+      "-transform-origin": origin
+    });
+  }
+
+  function resize(){
+    winWidth = _W = $(window).width();
+    winHeight = _H = $(window).height();
+    var scale = Math.min(_H/PAPER_BOX[1],_W/PAPER_BOX[0]);
+    console.log("scale -> ",scale);
+    zoomDom($('.book_box'),scale,"left top");
+    $('.book_box').css({
+      top:(_H - (PAPER_BOX[1]*scale))*0.5,
+      left: (_W - (PAPER_BOX[0]*scale))*0.5
+    });
+  }
 
   function init() {
     // init books
+    
+    resize();
     book = new Book();
     _.each(BOOK_DETAILS, function(obj, idx, arr) {
       imageList.push(obj.chapter);
@@ -204,6 +236,7 @@
     $('#chapters a').click(function(){
       book.moveChapter($(this).index());
     });
+    $(window).resize(resize);
   }
 
   function _end(data) {
