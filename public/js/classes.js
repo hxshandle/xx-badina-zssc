@@ -186,6 +186,7 @@ PaperManage.prototype = {
         t.onPageEnd(t.currpage);
         return;
       }
+      console.log('autoplay - > %s index - > %s',arr[idx],t.zindex - arr.length + idx + 1);
       t.pages[arr[idx]].showpage(0);
       t.pages[arr[idx]].setIndex(t.zindex - arr.length + idx + 1).R2L();
       idx++;
@@ -356,8 +357,10 @@ Paper.prototype = {
     var t = this;
     var now = 0;
     try{
-      $(t.pages).hide();
-    }catch(e){}
+      $(t.pages).fadeOut().removeAttr('style');
+    }catch(e){
+      //console.log("error - > ",e);
+    }
     
     //$(t.pages).fadeOut().removeAttr("style");
     //.css({"z-index":1,"transform":"rotateY("+now+"deg)","-webkit-transform":"rotateY("+now+"deg)","-moz-transform":"rotateY("+now+"deg)","-ms-transform":"rotateY("+now+"deg)","-o-transform":"rotateY("+now+"deg)"});

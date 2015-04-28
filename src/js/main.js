@@ -253,6 +253,7 @@
       pm.closeBook();
       $(this).hide();
       book.close();
+      isread = false;
     });
   }
 
