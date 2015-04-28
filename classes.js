@@ -22,7 +22,6 @@ PaperManage.prototype = {
     var t = this;
     t.totalpage = Math.ceil(t.doms.length / 2);
     for (var i = 0; i < t.doms.length; i += 2) {
-      console.log("page %s - [%s,%s]> ",i/2,i,i+1);
       t.pages.push(new Paper({
         pages: [t.doms[i],
           t.doms[i + 1]
@@ -355,11 +354,8 @@ Paper.prototype = {
   hidepage: function() {
     var t = this;
     var now = 0;
-    try{
-      $(t.pages).hide();
-    }catch(e){}
-    
     //$(t.pages).fadeOut().removeAttr("style");
+    $(t.pages).hide();
     //.css({"z-index":1,"transform":"rotateY("+now+"deg)","-webkit-transform":"rotateY("+now+"deg)","-moz-transform":"rotateY("+now+"deg)","-ms-transform":"rotateY("+now+"deg)","-o-transform":"rotateY("+now+"deg)"});
     return this;
   },
@@ -384,6 +380,7 @@ Paper.prototype = {
   },
   R2L: function(onend) {
     var t = this;
+    $(t.pages[t.page]).show();
     t.animate($(t.pages[t.page]), 0, -90, 1, 0.5, function() {
       $(t.pages[t.page]).hide();
       t.page = 1;

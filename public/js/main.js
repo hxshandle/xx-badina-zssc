@@ -21,7 +21,7 @@
     isPC = is_pc(),
     isPad = is_ipad(),
     isMob = is_mobile(),
-    book;
+    book,pm;
   var mousedown = "touchstart";
   var mouseup = "touchend";
   var mousemove = "touchmove";
@@ -237,11 +237,40 @@
       book.moveChapter($(this).index());
     });
     $(window).resize(resize);
+    $('.thumb').click(function(){
+      book.show($(this));
+      var pageIndex = $(this).index();
+      if(pageIndex != 0){
+        pageIndex = pageIndex * 2 -1;
+      }
+      console.log('pageindex - > '+pageIndex);
+      pm.autoShowPage(pageIndex);
+      playMusic("flipflip_vol");
+      $('#btn_catalog').show();
+    });
+    $('#btn_catalog').click(function(){
+     
+      pm.closeBook();
+      $(this).hide();
+      book.close();
+    });
+  }
+
+  function playMusic(id) {
+    document.getElementById(id).play();
+  }
+  function onPageEnd(){
+    //alert('page end');
   }
 
   function _end(data) {
     bindEvent();
     book.moveChapterSlider(0);
+    pm = new PaperManage({
+      doms: $(".paper"),
+      allowClickToPage: true,
+      onPageEnd: onPageEnd
+    });
   }
   init();
   console.log('done');
