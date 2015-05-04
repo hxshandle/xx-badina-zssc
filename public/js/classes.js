@@ -345,7 +345,7 @@ Paper.prototype = {
       });
       $(t.pages[t.page]).css({
         "transform": "rotateY(" + now + "deg)",
-        "-webkit-transform": "rotateY(" + now + "deg)",
+        //"-webkit-transform": "rotateY(" + now + "deg)",
         "-moz-transform": "rotateY(" + now + "deg)",
         "-ms-transform": "rotateY(" + now + "deg)",
         "-o-transform": "rotateY(" + now + "deg)"
@@ -433,7 +433,7 @@ Paper.prototype = {
           fx.start = sry;
           dom.css({
             "transform": "rotateY(" + now + "deg)",
-            "-webkit-transform": "rotateY(" + now + "deg)",
+            //"-webkit-transform": "rotateY(" + now + "deg)",
             "-moz-transform": "rotateY(" + now + "deg)",
             "-ms-transform": "rotateY(" + now + "deg)",
             "-o-transform": "rotateY(" + now + "deg)"

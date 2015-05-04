@@ -11,6 +11,7 @@
     gutter = 15,
     normalPageGutter = 10,
     curLeft = 0,
+    bookIsShow = false,
     curTop = 100,
     normalPageHeight = 250,
     listCurrLeft = 0,
@@ -249,11 +250,28 @@
       $('#btn_catalog').show();
     });
     $('#btn_catalog').click(function(){
-     
-      pm.closeBook();
+
+      $("#book .book").animate(
+       {es:0.3}
+      ,{
+        step: function(now,fx) {
+          if(fx.prop=="es"){
+            fx.start=1;
+            $(this).css({"transform":"scale("+now+")","-webkit-transform":"scale("+now+")","-moz-transform":"scale("+now+")","-ms-transform":"scale("+now+")","-o-transform":"scale("+now+")"});
+          }
+        }
+        ,duration:1000
+        ,complete:function(){
+          isread=false;
+          book.close();
+          $(".paper").hide().css({"z-index":0});
+        }
+       }
+      ,'swing');
+      if(pm)  pm.closeBook();
+      bookIsShow=false;
       $(this).hide();
-      book.close();
-      isread = false;
+      
     });
   }
 
