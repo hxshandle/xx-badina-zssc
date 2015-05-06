@@ -133,3 +133,94 @@
   background: url(../img/bar_btn_catalog_white.png) center center no-repeat;
   cursor: pointer;
 }
+
+#c_tip{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  overflow: hidden;
+  img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -375px -667px;
+    cursor: pointer;
+  }
+
+}
+
+@include keyframes(play_tip_hand_act) {
+  0%{right:25px;}
+  50%,100% {right:55px;}
+}
+
+.pop{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  z-index: 100;
+  overflow: hidden;
+  .pc{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+}
+
+#play_tip{
+  @extend .pop;
+
+  .pc{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    img{
+      position: absolute;
+    }
+    .icon{
+      right: 115px;
+      top: 50%;
+      margin-top: -12px;
+    }
+    .hand{
+      right: 55px;
+      top: 50%;
+      margin-top: -43px;
+      animation: play_tip_hand_act 1s linear infinite;
+      -webkit-animation: play_tip_hand_act 1s linear infinite;
+      -moz-animation: play_tip_hand_act 1s linear infinite;
+      -ms-animation: play_tip_hand_act 1s linear infinite;
+      -o-animation: play_tip_hand_act 1s linear infinite;
+    }
+  }
+}
+
+#back_tip{
+  @extend .pop;
+  .pc{
+    img{
+      position: absolute;
+    }
+    .icon{
+      left: 25px;
+      bottom: 60px;
+    }
+    .back{
+      left: 20px;
+      bottom: 11px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 var serverURL = "http://digitalzine.offthewall.com.cn/"; //"http://digitalzine_staging.offthewall.com.cn/";
-var sw, sh, tsw, tsh, ssmin;
+var sw, sh, tsw, tsh, ssmin,ss;
 var mousedown = "touchstart";
 var mouseup = "touchend";
 var mousemove = "touchmove";
