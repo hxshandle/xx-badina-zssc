@@ -75,7 +75,6 @@ PaperManage.prototype = {
   clickPage: function(e) {
     var t = this;
     if (isMob) {
-      return;
       if (t.iszoom) {
         t.iszoom = false;
         zoomDom($(".box_box"), 1, "left top");
