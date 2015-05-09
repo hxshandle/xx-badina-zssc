@@ -18,6 +18,7 @@ var imageList = [],
   winWidth = _W = $(window).width(),
   winHeight = _H = $(window).height(),
   isread = false,
+  thumbScale = 1,
   chatperWidth = 50,
   offsetTopAsSafari = 0,
   isPC = is_pc(),
@@ -50,8 +51,19 @@ function resize() {
   winWidth = _W = $(window).width();
   winHeight = _H = $(window).height();
   curTop = (_H-500)/2 - 100;
+  if(isPad){
+    thumbWidth = 195;
+    chapterWidth = 200;
+    curTop = 100;
+    normalPageHeight = 170;
+  }
+  if(isMob){
+    thumbWidth = 195;
+    chapterWidth = 200;
+    curTop = 50;
+    normalPageHeight = 170;
+  }
   var scale = Math.min(_H / PAPER_BOX[1], _W / PAPER_BOX[0]);
-  console.log("scale -> ", scale);
   zoomDom($('.book_box'), scale, "left top");
   $('.book_box').css({
     top: (_H - (PAPER_BOX[1] * scale)) * 0.5,
@@ -140,6 +152,20 @@ function onup() {
       }
     }
   });
+}
+
+function orientationChange() {
+  switch (window.orientation) {　　
+    case 0:
+      　　
+    case 180:
+      $("#no_show").show();　　
+      break;
+    default:
+      $("#no_show").hide();
+      resize();　　
+      break;
+  }
 }
 
 function _progress(data) {
@@ -235,6 +261,10 @@ function addPage(data) {
 }
 
 function bindEvent() {
+  if (isPad || isMob) {
+    orientationChange();
+    window.onorientationchange = orientationChange;
+  }
   // bind chapter nav event
   $('#chapters a').click(function() {
     book.moveChapter($(this).index());

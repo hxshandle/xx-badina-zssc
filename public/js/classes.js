@@ -22,7 +22,7 @@ PaperManage.prototype = {
     var t = this;
     t.totalpage = Math.ceil(t.doms.length / 2);
     for (var i = 0; i < t.doms.length; i += 2) {
-      console.log("page %s - [%s,%s]> ",i/2,i,i+1);
+      //console.log("page %s - [%s,%s]> ",i/2,i,i+1);
       t.pages.push(new Paper({
         pages: [t.doms[i],
           t.doms[i + 1]
@@ -89,7 +89,7 @@ PaperManage.prototype = {
         t.iszoom = true;
         var tleft = (sw - 1334 * ss) * 0.5 * 2.5;
         var ttop = offsetTopAsSafari * 1.5;
-        zoomDom($(".box_box"), 2.5, "left top");
+        zoomDom($(".box_box"), 3.5, "left top");
         if (!isPC && isSafari && navigator.userAgent.indexOf("iPhone OS") > -1 && tsw == 980 && (tsh == 654 || tsh == 552)) {
           if (e.index == 0) {
             $("#book").removeClass("ofh").addClass("ofxy").scrollTop(ttop).scrollLeft(sw * 2.5 - tleft - sw);

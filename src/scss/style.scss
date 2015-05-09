@@ -236,6 +236,17 @@
   }
 }
 
+#no_show{
+  @extend .pop;
+  background: black;
+  img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px;
+  }
+}
+
 .ofh{overflow:hidden;}
 .ofhtx{overflow-y:hidden; overflow-x:auto; -webkit-overflow-scrolling:touch; -moz-overflow-scrolling:touch; -ms-overflow-scrolling:touch;-o-overflow-scrolling:touch;}
 .ofhty{overflow-x:hidden; overflow-y:auto;overflow-scrolling:touch; -webkit-overflow-scrolling:touch; -moz-overflow-scrolling:touch;-ms-overflow-scrolling:touch;-o-overflow-scrolling:touch;}

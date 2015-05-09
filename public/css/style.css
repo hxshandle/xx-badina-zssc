@@ -167,7 +167,7 @@ a {
     right: 25px; }
   50%,100% {
     right: 55px; } }
-.pop, #play_tip, #back_tip, #zoom_tip {
+.pop, #play_tip, #back_tip, #zoom_tip, #no_show {
   position: absolute;
   top: 0;
   left: 0;
@@ -176,7 +176,7 @@ a {
   background: rgba(0, 0, 0, 0.75);
   z-index: 100;
   overflow: hidden; }
-  .pop .pc, #play_tip .pc, #back_tip .pc, #zoom_tip .pc {
+  .pop .pc, #play_tip .pc, #back_tip .pc, #zoom_tip .pc, #no_show .pc {
     position: absolute;
     top: 0;
     left: 0;
@@ -222,6 +222,14 @@ a {
   left: 50%;
   margin: -375px -667px;
   cursor: pointer; }
+
+#no_show {
+  background: black; }
+  #no_show img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px; }
 
 .ofh {
   overflow: hidden; }
