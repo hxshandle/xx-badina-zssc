@@ -1,6 +1,7 @@
 //$(function() {
 var imageList = [],
   preloadImageList = [],
+  totalPreloadImageCount = 0,
   totalPages = 0,
   pageIndex = 0,
   thumbWidth = 290,
@@ -54,13 +55,13 @@ function resize() {
   if(isPad){
     thumbWidth = 195;
     chapterWidth = 200;
-    curTop = 100;
+    curTop = 140;
     normalPageHeight = 170;
   }
   if(isMob){
     thumbWidth = 195;
     chapterWidth = 200;
-    curTop = 50;
+    curTop = 80;
     normalPageHeight = 170;
   }
   var scale = Math.min(_H / PAPER_BOX[1], _W / PAPER_BOX[0]);
@@ -90,6 +91,7 @@ function init() {
       src: BASE_PATH + "/" + val
     });
   });
+  totalPreloadImageCount = preloadImageList.length;
   preloadimg({
     list: preloadImageList,
     progress: _progress,
@@ -169,6 +171,11 @@ function orientationChange() {
 }
 
 function _progress(data) {
+  var percent = Math.ceil((data.idx/data.total))*100;
+  $('.percent').text(percent+"%");
+  $('#loading .mask').css({
+    width:percent+"%"
+  });
   addChapter(data);
   addThumb(data);
   addPage(data);
@@ -358,6 +365,9 @@ function _end(data) {
     allowClickToPage: true,
     onPageEnd: onPageEnd
   });
+  $('#loading').fadeOut();
+  $('#c_tip').show();
+
 }
 init();
 //});

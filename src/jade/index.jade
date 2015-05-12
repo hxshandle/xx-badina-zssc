@@ -15,7 +15,7 @@ body
       .book_box
         .book
   #btn_catalog
-  #c_tip
+  #c_tip.no
     img(src="img/c_tip.gif")
   #play_tip.no
     .pc
@@ -29,6 +29,12 @@ body
     img.icon(src="img/zoom_tip.gif")
   #no_show.no
     img.icon(src="img/rotate_icon.gif")
+    img.ra(src="img/rotate_android.png")
+  #loading
+    .loading-box
+      h1 Loading...
+      .mask
+      span.percent 0%
   audio#flipflip_vol(preload="true" src="flipflip.mp3") 
   audio#flip_vol(preload="true" src="flip.mp3") 
   script(src="js/vendor/jade-runtime.js")

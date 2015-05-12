@@ -239,12 +239,42 @@
 #no_show{
   @extend .pop;
   background: black;
-  img{
+  .icon{
     position: absolute;
     top: 50%;
     left: 50%;
     margin: -100px;
   }
+  .ra{
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -204px;
+  }
+}
+
+#loading{
+  @extend .pop;
+  background: #000;
+  color: #fff;
+  .loading-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    .mask{
+      position: absolute;
+      background: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    h1{
+      font-size: 32px;
+    }
+  } 
 }
 
 .ofh{overflow:hidden;}

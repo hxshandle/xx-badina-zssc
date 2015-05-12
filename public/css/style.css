@@ -167,7 +167,7 @@ a {
     right: 25px; }
   50%,100% {
     right: 55px; } }
-.pop, #play_tip, #back_tip, #zoom_tip, #no_show {
+.pop, #play_tip, #back_tip, #zoom_tip, #no_show, #loading {
   position: absolute;
   top: 0;
   left: 0;
@@ -176,7 +176,7 @@ a {
   background: rgba(0, 0, 0, 0.75);
   z-index: 100;
   overflow: hidden; }
-  .pop .pc, #play_tip .pc, #back_tip .pc, #zoom_tip .pc, #no_show .pc {
+  .pop .pc, #play_tip .pc, #back_tip .pc, #zoom_tip .pc, #no_show .pc, #loading .pc {
     position: absolute;
     top: 0;
     left: 0;
@@ -225,11 +225,35 @@ a {
 
 #no_show {
   background: black; }
-  #no_show img {
+  #no_show .icon {
     position: absolute;
     top: 50%;
     left: 50%;
     margin: -100px; }
+  #no_show .ra {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    margin-left: -204px; }
+
+#loading {
+  background: #000;
+  color: #fff; }
+  #loading .loading-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center; }
+    #loading .loading-box .mask {
+      position: absolute;
+      background: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5); }
+    #loading .loading-box h1 {
+      font-size: 32px; }
 
 .ofh {
   overflow: hidden; }
