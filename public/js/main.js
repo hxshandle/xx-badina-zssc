@@ -31,7 +31,7 @@ var isSafari = navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent
 var mousedown = "touchstart";
 var mouseup = "touchend";
 var mousemove = "touchmove";
-var PAPER_BOX = [2048, 1536]; // define the page size
+var PAPER_BOX = [1334, 1000]; // define the page size
 function zoomDom(dom, s, origin) {
   if (!origin) origin = "top center";
   dom.css({
