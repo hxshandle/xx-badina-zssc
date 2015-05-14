@@ -387,27 +387,27 @@ Paper.prototype = {
   },
   R2L: function(onend) {
     var t = this;
-    t.animate($(t.pages[t.page]), 0, -90, 1, 0.5, function() {
+    t.animate($(t.pages[t.page]), 0, -90, 1, 1, function() {
       $(t.pages[t.page]).hide();
       t.page = 1;
-      t.animate($(t.pages[t.page]), 90, 0, 0.5, 1, function() {
+      t.animate($(t.pages[t.page]), 90, 0, 1, 1, function() {
         if (onend) onend();
       });
     });
   },
   L2R: function(onend) {
     var t = this;
-    t.animate($(t.pages[t.page]), 0, 90, 1, 0.5, function() {
+    t.animate($(t.pages[t.page]), 0, 90, 1, 1, function() {
       $(t.pages[t.page]).hide();
       t.page = 0;
-      t.animate($(t.pages[t.page]), -90, 0, 0.5, 1, function() {
+      t.animate($(t.pages[t.page]), -90, 0, 1, 1, function() {
         if (onend) onend();
       });
     });
   },
   animate: function autoPlay(dom, sry, ery, so, eo, onend, duration) {
     var t = this;
-    if (!duration) duration = 300;
+    if (!duration) duration = 400;
     dom.children().css({
       opacity: so
     }).animate({
