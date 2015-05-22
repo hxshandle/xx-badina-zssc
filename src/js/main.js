@@ -193,6 +193,9 @@ function _addThumb(opt) {
     _top = normalPage * normalPageHeight + curTop + 16;
     normalPage = normalPage == 0 ? 1 : 0;
   } else {
+    if(normalPage == 1){
+      curLeft += thumbWidth+normalPageGutter;
+    }
     normalPage = 0;
   }
   curLeft = opt.isNewChapter ? curLeft + gutter : curLeft;
@@ -209,6 +212,7 @@ function _addThumb(opt) {
   }
   // add chapter
   if (opt.isNewChapter) {
+
     book.addChapter({
       left: curLeft,
       pageNo: pageIndex

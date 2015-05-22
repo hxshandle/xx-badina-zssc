@@ -1,8 +1,8 @@
 var BASE_PATH = "img/p";
 var BOOK_DETAILS = [{
   "chapter": "c1.jpg",
-  "thumbs": ["t2.jpg", "t3.jpg", "t4.jpg", "t5.jpg"],
-  "pages": ["pages/1_03.jpg", "pages/2_01.jpg", "pages/2_03.jpg", "pages/3_01.jpg", "pages/3_03.jpg", "pages/4_01.jpg", "pages/4_03.jpg", "pages/5_01.jpg", "pages/5_03.jpg"]
+  "thumbs": ["t2.jpg", "t3.jpg", "t4.jpg", "t5.jpg","t5.jpg"],
+  "pages": ["pages/1_03.jpg", "pages/2_01.jpg", "pages/2_03.jpg", "pages/3_01.jpg", "pages/3_03.jpg", "pages/4_01.jpg", "pages/4_03.jpg", "pages/5_01.jpg", "pages/5_03.jpg", "pages/5_01.jpg", "pages/5_03.jpg"]
 },
 {
   "chapter": "c6.jpg",
